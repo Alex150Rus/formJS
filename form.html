@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Form</title>
+  <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+
+<script src="Form.js"></script>
+<script>
+
+  /**
+   * Конструктор формы обратной связи
+   * @type {Form} - Конструктор формы обратной связи
+   * @param {string} formId, атрибут id тега form
+   * @param {string} formAction, атрибут action тега form
+   * @param {string} formMethod, атрибут method тега form
+   * @param {string} labelForIdInputName, атрибут for тега label поля 'Имя' и id тега input
+   * @param {string} labelNameText, value тега label поля 'Имя'
+   * @param {string} labelForIdInputPhone, атрибут for тега label поля 'Телефон' и id тега input
+   * @param {string} labelPhoneText, value тега label поля 'Телефон'
+   * @param {string} labelForIdInputEmail, атрибут for тега label поля 'Email' и id тега input
+   * @param {string} labelEmailText, value тега label поля 'Email'
+   * @param {string} labelForTextIdText, атрибут for тега label поля 'Текс' и id тега input
+   * @param {string} labelTextText, value тега label поля 'Текс'
+   * @param {string} buttonType, атрибут type тега button
+   * @param {string} buttonValue, атрибут value тега button (название кнопки)
+   * @param {string} placeHolderName, пример правильного ввода имени
+   * @param {string} placeHolderPhone, пример правильного ввода телефона
+   * @param {string} placeHolderEmail, пример правильного ввода Email
+   * @param {string} placeHolderText, пример того, что можно ввести в текстовом поле
+   */
+  form = new Form('formId', '#', 'post', 'name', 'Имя:', 'phone', 'Телефон:', 'email', 'Email:', 'text', 'Текст:',
+    'submit', 'Отправить', 'Иван', '+7(000)000-0000', 'mymail@mail.*, my.mail@mail.*, or my-mail@mail.*',
+    'Причина обращения');
+  form.render();
+
+  window.onload = () => {
+    fetch('cities.json')
+      .then (result => {
+        console.log(result);
+        return result.json()
+      })
+      .then(data => {
+        const dataList = document.getElementById('city');
+        for (const el of data){
+          dataList.innerHTML += `<option>${el}</option>`
+        }
+
+        const inputCity = document.getElementById('cityInp');
+        inputCity.addEventListener('input', event => {
+          if (inputCity.value.match(/[A-Яа-яЁё]{3}/gi)) {
+            dataList.innerHTML = '';
+            data.forEach(function(element) {
+              if (element.match(inputCity.value)) {
+                console.log(element);
+                dataList.innerHTML += `<option>${element}</option>`
+              }
+            })
+          }
+        })
+
+      })
+      .catch(error => {
+        console.log(error);
+      })
+  }
+
+</script>
+</body>
+</html>

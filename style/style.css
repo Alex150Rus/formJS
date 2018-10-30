@@ -1,0 +1,22 @@
+form {
+  display: flex;
+  flex-direction: column; }
+
+input, select {
+  width: 250px; }
+
+button {
+  width: 200px;
+  margin-top: 20px; }
+
+.opacity {
+  opacity: 0; }
+
+.errorColor {
+  color: red;
+  opacity: 1; }
+
+#cityLabel {
+  margin-top: 20px; }
+
+/*# sourceMappingURL=style.css.map */
