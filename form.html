@@ -3,10 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <title>Form</title>
+  <link rel="stylesheet" href="bower_components/jquery-ui/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
 
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
 <script src="Form.js"></script>
 <script>
 
@@ -38,13 +41,13 @@
 
   window.onload = () => {
     fetch('cities.json')
-      .then (result => {
+      .then(result => {
         console.log(result);
         return result.json()
       })
       .then(data => {
         const dataList = document.getElementById('city');
-        for (const el of data){
+        for (const el of data) {
           dataList.innerHTML += `<option>${el}</option>`
         }
 
@@ -52,7 +55,7 @@
         inputCity.addEventListener('input', event => {
           if (inputCity.value.match(/[A-Яа-яЁё]{3}/gi)) {
             dataList.innerHTML = '';
-            data.forEach(function(element) {
+            data.forEach(function (element) {
               if (element.match(inputCity.value)) {
                 console.log(element);
                 dataList.innerHTML += `<option>${element}</option>`
@@ -64,7 +67,18 @@
       })
       .catch(error => {
         console.log(error);
-      })
+      });
+
+    $('#birthday').datepicker({
+      firstDay: 1,
+      dateFormat: 'dd.mm.yy',
+      changeMonth: true,
+      changeYear: true,
+      showWeek: true,
+      dayNamesMin: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+      monthNames: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь',
+        'Ноябрь', 'Декабрь']
+    })
   }
 
 </script>

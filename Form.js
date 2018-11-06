@@ -42,6 +42,7 @@ class Form {
     document.body.innerHTML = `<form id="${this.formId}" action="${this.formAction}" method="${this.formMethod}">` +
       `</form>`;
     this.renderNameInput();
+    this.renderYearOfBirth();
     this.renderTelephoneInput();
     this.renderMailInput();
     this.renderTextInput();
@@ -58,6 +59,17 @@ class Form {
     formEl.innerHTML +=`<label for="${this.labelForIdInputName}">` +
       `${this.labelNameText}</label>`;
     formEl.innerHTML += `<input type="text" id="${this.labelForIdInputName}" placeholder="${this.placeHolderName}">`;
+    // поле для вывода ошибки
+    formEl.innerHTML += '<div id="errorName" class="opacity">здесь будет<br> сообщение об ошибке</div>';
+  }
+
+  renderYearOfBirth() {
+    //вставляю в форму конструкцию для поля 'День рождения'
+    // ищу форму
+    const formEl = document.getElementById(this.formId);
+    formEl.innerHTML +=`<label for="birthday">` +
+      `Выберите дату Вашего рождения:</label>`;
+    formEl.innerHTML += `<input type="text" id="birthday" placeholder="11.11.1111">`;
     // поле для вывода ошибки
     formEl.innerHTML += '<div id="errorName" class="opacity">здесь будет<br> сообщение об ошибке</div>';
   }
