@@ -1,0 +1,17 @@
+{
+  "name": "n",
+  "homepage": "https://github.com/Alex150Rus/formJS",
+  "authors": [
+    "Alexander <43272321+Alex150Rus@users.noreply.github.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
